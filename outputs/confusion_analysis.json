@@ -1,0 +1,6 @@
+{
+    "analysis_text": "Dynamic Confusion Analysis:\n  - Most Confused Pair: Actual 'Home' misclassified as Predicted 'Electronics'\n  - Count: 23 occurrence(s)\n",
+    "most_confused_actual": "Home",
+    "most_confused_predicted": "Electronics",
+    "confusion_count": 23
+}

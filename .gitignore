@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Databases
+database.db
+
+# Large dataset files (we download these dynamically)
+dataset/train/
+dataset/val/
+dataset/temp_*/
+dataset/temp_zip_extract/
+
+# Cache folders
+.cache/
+.streamlit/
+.ipynb_checkpoints/
+
+# Large model checkpoints / binary weights
+saved_model/model.pt
+
+# Outputs and logs
+outputs/thumbnails/
+outputs/*.png
+outputs/*.csv
+*.log

@@ -1,0 +1,13 @@
+# SmartCatalog AI Dependency List
+# Tested on Python 3.14.3 (Windows)
+
+torch==2.11.0
+torchvision==0.26.0
+streamlit==1.55.0
+pandas==2.3.3
+numpy==2.4.3
+opencv-python-headless==5.0.0.93
+pillow==12.1.1
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
