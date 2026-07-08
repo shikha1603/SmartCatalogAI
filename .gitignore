@@ -23,7 +23,7 @@ dataset/temp_zip_extract/
 .ipynb_checkpoints/
 
 # Large model checkpoints / binary weights
-saved_model/model.pt
+# saved_model/model.pt
 
 # Outputs and logs
 outputs/thumbnails/
