@@ -18,7 +18,7 @@ import zipfile
 import logging
 from PIL import Image, ImageDraw
 from typing import Dict, List, Tuple
-from config import DATASET_DIR, TRAIN_DIR, VAL_DIR, CATEGORIES, CATEGORY_MAP
+from config import DATASET_DIR, TRAIN_DIR, VAL_DIR, CATEGORIES, CATEGORY_MAP, SAVED_MODEL_DIR
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -298,6 +298,24 @@ def report_dataset_counts() -> None:
                 logger.warning("Class imbalance exceeds 2:1! Class weights should be applied during model training.")
             else:
                 logger.info("Class distribution is balanced (ratio <= 2:1).")
+                
+    # Save dataset stats to JSON for deployment metadata
+    import json
+    stats_data = {}
+    for cat in CATEGORIES:
+        stats_data[cat] = {
+            "train": train_counts.get(cat, 0),
+            "val": val_counts.get(cat, 0)
+        }
+    stats_path = os.path.join(SAVED_MODEL_DIR, "dataset_stats.json")
+    try:
+        os.makedirs(SAVED_MODEL_DIR, exist_ok=True)
+        with open(stats_path, "w") as f:
+            json.dump(stats_data, f, indent=4)
+        logger.info(f"Successfully saved dataset stats to {stats_path}")
+    except Exception as e:
+        logger.error(f"Failed to save dataset stats to JSON: {e}")
+
 
 def download_from_kaggle(dataset_name: str) -> None:
     """Uses the Kaggle API to download and extract the dataset."""

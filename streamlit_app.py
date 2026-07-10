@@ -181,6 +181,28 @@ def load_model_cached():
 
 # Get training and validation split counts per class
 def get_sample_counts() -> pd.DataFrame:
+    # 1. Try to read cached split stats (useful for cloud deployments where raw dataset is gitignored)
+    stats_path = os.path.join(os.path.dirname(MODEL_PATH), "dataset_stats.json")
+    if os.path.exists(stats_path):
+        try:
+            with open(stats_path, "r") as f:
+                stats_data = json.load(f)
+            rows = []
+            for cat in CATEGORIES:
+                cat_stats = stats_data.get(cat, {"train": 0, "val": 0})
+                t_count = cat_stats.get("train", 0)
+                v_count = cat_stats.get("val", 0)
+                rows.append({
+                    "Category": cat,
+                    "Training Images": t_count,
+                    "Validation Images": v_count,
+                    "Ratio (Train/Val)": f"{t_count}:{v_count}" if v_count > 0 else "N/A"
+                })
+            return pd.DataFrame(rows)
+        except Exception as e:
+            logger.warning(f"Failed to load dataset_stats.json: {e}")
+
+    # 2. Dynamic directory scanning fallback (for local development)
     rows = []
     for cat in CATEGORIES:
         t_dir = os.path.join(TRAIN_DIR, cat)

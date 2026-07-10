@@ -27,6 +27,6 @@ dataset/temp_zip_extract/
 
 # Outputs and logs
 outputs/thumbnails/
-outputs/*.png
-outputs/*.csv
+# outputs/*.png
+# outputs/*.csv
 *.log

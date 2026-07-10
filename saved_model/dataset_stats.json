@@ -1,0 +1,22 @@
+{
+    "Fashion": {
+        "train": 400,
+        "val": 100
+    },
+    "Electronics": {
+        "train": 400,
+        "val": 100
+    },
+    "Home": {
+        "train": 400,
+        "val": 100
+    },
+    "Beauty": {
+        "train": 400,
+        "val": 100
+    },
+    "Grocery": {
+        "train": 400,
+        "val": 100
+    }
+}
